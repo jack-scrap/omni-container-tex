@@ -131,7 +131,7 @@ int main() {
 			}
 		}
 
-		disp.clear(0, 0, 0, 1);
+		disp.clear(42 / 255.0, 39 / 255.0, 37 / 255.0, 1);
 
 		model = glm::rotate(model, (GLfloat) (M_PI / 100.0), glm::vec3(0, 1, 0));
 
