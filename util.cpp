@@ -19,3 +19,18 @@ std::string util::rd(std::string name) {
 
 	return total;
 }
+
+std::vector<std::string> util::rdVec(std::string fName) {
+	std::ifstream in;
+	in.open(std::string(std::string(".") + std::string("/") + fName));
+
+	std::vector<std::string> cont;
+
+	for (std::string l; std::getline(in, l);) {
+		cont.push_back(l);
+	}
+
+	in.close();
+
+	return cont;
+}

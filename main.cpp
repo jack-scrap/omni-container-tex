@@ -1,3 +1,5 @@
+#include <vector>
+#include <sstream>
 #include <GL/glew.h>
 #include <glm/glm.hpp>
 #include <glm/gtc/matrix_transform.hpp>
@@ -6,6 +8,36 @@
 #include "disp.h"
 #include "prog.h"
 #include "util.h"
+
+std::vector<std::string> split(std::string buff, char delim) {
+	std::vector<std::string> tok;
+
+	std::stringstream s(buff);
+	std::string seg;
+	while (std::getline(s, seg, delim)) {
+		tok.push_back(seg);
+	}
+
+	return tok;
+}
+
+std::vector<GLfloat> rdVtc(std::string fName) {
+	std::vector<GLfloat> _;
+
+	std::vector<std::string> buff = util::rdVec(fName + ".obj");
+
+	for (int l = 0; l < buff.size(); l++) {
+		std::vector<std::string> tok = split(buff[l], ' ');
+
+		if (tok[0] == "v") {
+			for (int i = 1; i < 1 + 3; i++) {
+				_.push_back(std::stof(tok[i]));
+			}
+		}
+	}
+
+	return _;
+}
 
 int main() {
 	Disp disp("asdf", 800, 600);
@@ -22,62 +54,9 @@ int main() {
 	glGenBuffers(1, &vbo);
 	glBindBuffer(GL_ARRAY_BUFFER, vbo);
 
-	GLfloat vtc[3 * 2 * 2 * 3 * 3] = {
-		// back
-		-1.0, -1.0, -1.0,
-		1.0, -1.0, -1.0,
-		-1.0, 1.0, -1.0,
+	std::vector<GLfloat> vtc = rdVtc("c_shotgun");
 
-		-1.0, 1.0, -1.0,
-		1.0, -1.0, -1.0,
-		1.0, 1.0, -1.0,
-
-		// front
-		-1.0, -1.0, 1.0,
-		1.0, -1.0, 1.0,
-		-1.0, 1.0, 1.0,
-
-		-1.0, 1.0, 1.0,
-		1.0, -1.0, 1.0,
-		1.0, 1.0, 1.0,
-
-		// left
-		-1.0, -1.0, -1.0,
-		-1.0, -1.0, 1.0,
-		-1.0, 1.0, -1.0,
-
-		-1.0, 1.0, -1.0,
-		-1.0, -1.0, 1.0,
-		-1.0, 1.0, 1.0,
-
-		// right
-		1.0, -1.0, -1.0,
-		1.0, -1.0, 1.0,
-		1.0, 1.0, -1.0,
-
-		1.0, 1.0, -1.0,
-		1.0, -1.0, 1.0,
-		1.0, 1.0, 1.0,
-
-		// bottom
-		-1.0, -1.0, -1.0,
-		1.0, -1.0, -1.0,
-		-1.0, -1.0, 1.0,
-
-		-1.0, -1.0, 1.0,
-		1.0, -1.0, -1.0,
-		1.0, -1.0, 1.0,
-
-		// top
-		-1.0, 1.0, -1.0,
-		1.0, 1.0, -1.0,
-		-1.0, 1.0, 1.0,
-
-		-1.0, 1.0, 1.0,
-		1.0, 1.0, -1.0,
-		1.0, 1.0, 1.0
-	};
-	glBufferData(GL_ARRAY_BUFFER, sizeof vtc, vtc, GL_STATIC_DRAW);
+	glBufferData(GL_ARRAY_BUFFER, vtc.size() * sizeof (GLfloat), &vtc[0], GL_STATIC_DRAW);
 
 	// matrix
 	glm::mat4
