@@ -10,5 +10,5 @@ uniform mat4
 out vec3 _pos;
 
 void main() {
-	gl_Position = proj * view * model * vec4(pos * vec3(1.1), 1.0);
+	gl_Position = proj * view * model * vec4(pos + (normalize(pos) * vec3(0.1)), 1.0);
 }
