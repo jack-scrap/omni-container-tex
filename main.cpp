@@ -39,6 +39,26 @@ std::vector<GLfloat> rdVtc(std::string fName) {
 	return _;
 }
 
+std::vector<GLushort> rdIdc(std::string fName, unsigned int attr) {
+	std::vector<GLushort> _;
+
+	std::vector<std::string> buff = util::rdVec(fName + ".obj");
+
+	for (int l = 0; l < buff.size(); l++) {
+		std::vector<std::string> tok = split(buff[l], ' ');
+
+		if (tok[0] == "f") {
+			for (int i = 1; i < 1 + 3; i++) {
+				std::vector<std::string> type = split(tok[i], '/');
+
+				_.push_back(std::stoi(type[attr]) - 1);
+			}
+		}
+	}
+
+	return _;
+}
+
 int main() {
 	Disp disp("asdf", 800, 600);
 
@@ -55,8 +75,13 @@ int main() {
 	glBindBuffer(GL_ARRAY_BUFFER, vbo);
 
 	std::vector<GLfloat> vtc = rdVtc("c_shotgun");
-
 	glBufferData(GL_ARRAY_BUFFER, vtc.size() * sizeof (GLfloat), &vtc[0], GL_STATIC_DRAW);
+
+	GLuint ibo;
+	glGenBuffers(1, &ibo);
+	glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, ibo);
+	std::vector<GLushort> idc = rdIdc("c_shotgun", 0);
+	glBufferData(GL_ELEMENT_ARRAY_BUFFER, idc.size() * sizeof (GLfloat), &idc[0], GL_STATIC_DRAW);
 
 	// matrix
 	glm::mat4
@@ -139,7 +164,7 @@ int main() {
 
 		glUniformMatrix4fv(uniModelOutline, 1, GL_FALSE, glm::value_ptr(model));
 
-		glDrawArrays(GL_TRIANGLES, 0, 3 * 2 * 2 * 3);
+		glDrawElements(GL_TRIANGLES, idc.size(), GL_UNSIGNED_SHORT, (GLvoid*) 0);
 
 		progOutline.unUse();
 
@@ -149,7 +174,7 @@ int main() {
 
 		glUniformMatrix4fv(uniModel, 1, GL_FALSE, glm::value_ptr(model));
 
-		glDrawArrays(GL_TRIANGLES, 0, 3 * 2 * 2 * 3);
+		glDrawElements(GL_TRIANGLES, idc.size(), GL_UNSIGNED_SHORT, (GLvoid*) 0);
 
 		prog.unUse();
 
