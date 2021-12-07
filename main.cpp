@@ -104,6 +104,25 @@ int main() {
 	glUniformMatrix4fv(uniView, 1, GL_FALSE, glm::value_ptr(view));
 	glUniformMatrix4fv(uniModel, 1, GL_FALSE, glm::value_ptr(model));
 
+	Prog progOutline("outline", "outline");
+
+	/// attribute
+	GLint attrPosOutline = glGetAttribLocation(prog._id, "pos");
+	glVertexAttribPointer(attrPosOutline, 3, GL_FLOAT, GL_FALSE, 0, (GLvoid*) 0);
+	glEnableVertexAttribArray(attrPosOutline);
+
+	/// uniform
+	GLint
+		uniModelOutline = glGetUniformLocation(progOutline._id, "model"),
+	 	uniViewOutline = glGetUniformLocation(progOutline._id, "view"),
+	 	uniProjOutline = glGetUniformLocation(progOutline._id, "proj");
+
+	progOutline.use();
+
+	glUniformMatrix4fv(uniProjOutline, 1, GL_FALSE, glm::value_ptr(proj));
+	glUniformMatrix4fv(uniViewOutline, 1, GL_FALSE, glm::value_ptr(view));
+	glUniformMatrix4fv(uniModelOutline, 1, GL_FALSE, glm::value_ptr(model));
+
 	SDL_Event e;
 	while (disp.open) {
 		while (SDL_PollEvent(&e)) {
@@ -113,6 +132,16 @@ int main() {
 		}
 
 		disp.clear(0, 0, 0, 1);
+
+		glDisable(GL_DEPTH_TEST);
+
+		progOutline.use();
+
+		glDrawArrays(GL_TRIANGLES, 0, 3 * 2 * 2 * 3);
+
+		progOutline.unUse();
+
+		glEnable(GL_DEPTH_TEST);
 
 		prog.use();
 

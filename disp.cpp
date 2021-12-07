@@ -20,8 +20,6 @@ Disp::Disp(const char* title, int wd, int ht) {
 		std::cerr << "GLEW failed to initialize" << std::endl;
 	}
 
-	glEnable(GL_DEPTH_TEST);
-
 	open = true;
 }
 
