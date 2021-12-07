@@ -10,6 +10,8 @@
 int main() {
 	Disp disp("asdf", 800, 600);
 
+	glm::vec3 scale = glm::vec3(1, 1, 1);
+
 	// data
 	GLuint vao;
 	glGenVertexArrays(1, &vao);
@@ -124,16 +126,33 @@ int main() {
 	glUniformMatrix4fv(uniModelOutline, 1, GL_FALSE, glm::value_ptr(model));
 
 	SDL_Event e;
+	unsigned int t = 0;
 	while (disp.open) {
 		while (SDL_PollEvent(&e)) {
 			if (e.type == SDL_QUIT) {
 				SDL_Quit();
 			}
+
+			if (e.type == SDL_MOUSEWHEEL) {
+				if (e.wheel.y > 0) {
+					if (glm::all(glm::lessThan(scale, glm::vec3(5.0, 5.0, 5.0)))) {
+						scale += glm::vec3(0.1, 0.1, 0.1);
+					}
+				}
+
+				if (e.wheel.y < 0) {
+					if (glm::all(glm::greaterThan(scale, glm::vec3(0.5, 0.5, 0.5)))) {
+						scale -= glm::vec3(0.1, 0.1, 0.1);
+					}
+				}
+			}
 		}
 
 		disp.clear(42 / 255.0, 39 / 255.0, 37 / 255.0, 1);
 
-		model = glm::rotate(model, (GLfloat) (M_PI / 100.0), glm::vec3(0, 1, 0));
+		model = glm::mat4(1.0);
+		model = glm::rotate(model, (GLfloat) (t * (M_PI / 100.0)), glm::vec3(0, 1, 0));
+		model = glm::scale(model, scale);
 
 		glDisable(GL_DEPTH_TEST);
 
@@ -156,5 +175,7 @@ int main() {
 		prog.unUse();
 
 		disp.update();
+
+		t++;
 	}
 }
