@@ -1,5 +1,7 @@
 #version 400
 
+float stroke = 0.1;
+
 in vec3 pos;
 
 uniform mat4
@@ -10,5 +12,5 @@ uniform mat4
 out vec3 _pos;
 
 void main() {
-	gl_Position = proj * view * model * vec4(pos + (normalize(pos) * vec3(0.1)), 1.0);
+	gl_Position = proj * view * model * vec4(pos + (normalize(pos) * vec3(stroke)), 1.0);
 }
