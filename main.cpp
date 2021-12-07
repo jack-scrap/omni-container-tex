@@ -114,7 +114,11 @@ int main() {
 
 		disp.clear(0, 0, 0, 1);
 
+		prog.use();
+
 		glDrawArrays(GL_TRIANGLES, 0, 3 * 2 * 2 * 3);
+
+		prog.unUse();
 
 		disp.update();
 	}
