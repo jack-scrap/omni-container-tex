@@ -133,9 +133,13 @@ int main() {
 
 		disp.clear(0, 0, 0, 1);
 
+		model = glm::rotate(model, (GLfloat) (M_PI / 100.0), glm::vec3(0, 1, 0));
+
 		glDisable(GL_DEPTH_TEST);
 
 		progOutline.use();
+
+		glUniformMatrix4fv(uniModelOutline, 1, GL_FALSE, glm::value_ptr(model));
 
 		glDrawArrays(GL_TRIANGLES, 0, 3 * 2 * 2 * 3);
 
@@ -144,6 +148,8 @@ int main() {
 		glEnable(GL_DEPTH_TEST);
 
 		prog.use();
+
+		glUniformMatrix4fv(uniModel, 1, GL_FALSE, glm::value_ptr(model));
 
 		glDrawArrays(GL_TRIANGLES, 0, 3 * 2 * 2 * 3);
 
