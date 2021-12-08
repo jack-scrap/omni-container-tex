@@ -15,5 +15,5 @@ void main() {
 	gl_Position = proj * view * model * vec4(pos, 1.0);
 
 	_pos = pos;
-	_st = st;
+	_st = st * vec2(1, -1);
 }
