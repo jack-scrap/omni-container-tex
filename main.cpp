@@ -9,56 +9,6 @@
 #include "prog.h"
 #include "util.h"
 
-std::vector<std::string> split(std::string buff, char delim) {
-	std::vector<std::string> tok;
-
-	std::stringstream s(buff);
-	std::string seg;
-	while (std::getline(s, seg, delim)) {
-		tok.push_back(seg);
-	}
-
-	return tok;
-}
-
-std::vector<GLfloat> rdVtc(std::string fName) {
-	std::vector<GLfloat> _;
-
-	std::vector<std::string> buff = util::rdVec(fName + ".obj");
-
-	for (int l = 0; l < buff.size(); l++) {
-		std::vector<std::string> tok = split(buff[l], ' ');
-
-		if (tok[0] == "v") {
-			for (int i = 1; i < 1 + 3; i++) {
-				_.push_back(std::stof(tok[i]));
-			}
-		}
-	}
-
-	return _;
-}
-
-std::vector<GLushort> rdIdc(std::string fName, unsigned int attr) {
-	std::vector<GLushort> _;
-
-	std::vector<std::string> buff = util::rdVec(fName + ".obj");
-
-	for (int l = 0; l < buff.size(); l++) {
-		std::vector<std::string> tok = split(buff[l], ' ');
-
-		if (tok[0] == "f") {
-			for (int i = 1; i < 1 + 3; i++) {
-				std::vector<std::string> type = split(tok[i], '/');
-
-				_.push_back(std::stoi(type[attr]) - 1);
-			}
-		}
-	}
-
-	return _;
-}
-
 int main() {
 	Disp disp("asdf", 800, 600);
 
@@ -74,13 +24,13 @@ int main() {
 	glGenBuffers(1, &vbo);
 	glBindBuffer(GL_ARRAY_BUFFER, vbo);
 
-	std::vector<GLfloat> vtc = rdVtc("c_shotgun");
+	std::vector<GLfloat> vtc = util::mesh::rd::vtc("c_shotgun");
 	glBufferData(GL_ARRAY_BUFFER, vtc.size() * sizeof (GLfloat), &vtc[0], GL_STATIC_DRAW);
 
 	GLuint ibo;
 	glGenBuffers(1, &ibo);
 	glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, ibo);
-	std::vector<GLushort> idc = rdIdc("c_shotgun", 0);
+	std::vector<GLushort> idc = util::mesh::rd::idc("c_shotgun", 0);
 	glBufferData(GL_ELEMENT_ARRAY_BUFFER, idc.size() * sizeof (GLfloat), &idc[0], GL_STATIC_DRAW);
 
 	// matrix
