@@ -12,7 +12,7 @@
 int main() {
 	Disp disp("asdf", 800, 600);
 
-	glm::vec3 scale = glm::vec3(1, 1, 1);
+	glm::vec3 scale = glm::vec3(0.2, 0.2, 0.2);
 
 	// data
 	GLuint vao;
