@@ -44,7 +44,16 @@ int main() {
 	glGenBuffers(1, &stbo);
 	glBindBuffer(GL_ARRAY_BUFFER, stbo);
 
+	std::vector<GLfloat> stRaw = util::mesh::rd::st("c_shotgun");
+	std::vector<GLushort> stIdc = util::mesh::rd::idc("c_shotgun", 1);
+
 	std::vector<GLfloat> st = util::mesh::rd::st("c_shotgun");
+	for (int i = 0; i < stIdc.size(); i++) {
+		for (int v = 0; v < 2; v++) {
+			st.push_back(stRaw[(stIdc[i] * 2) + v]);
+		}
+	}
+
 	glBufferData(GL_ARRAY_BUFFER, st.size() * sizeof (GLfloat), &st[0], GL_STATIC_DRAW);
 
 	GLuint ibo;
