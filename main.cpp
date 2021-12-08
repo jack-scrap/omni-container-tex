@@ -68,10 +68,9 @@ int main() {
 	glBufferData(GL_ELEMENT_ARRAY_BUFFER, idc.size() * sizeof (GLfloat), &idc[0], GL_STATIC_DRAW);
 
 	// matrix
-	glm::mat4
-		model = glm::mat4(1.0),
-		view = glm::lookAt(glm::vec3(4, 3, 3), glm::vec3(0, 0, 0), glm::vec3(0, 1, 0)),
-		proj = glm::perspective(glm::radians(45.0), 800.0 / 600.0, 0.1, 100.0);
+	glm::mat4 model = glm::mat4(1.0);
+	glm::mat4 view = glm::lookAt(glm::vec3(4, 3, 3), glm::vec3(0, 0, 0), glm::vec3(0, 1, 0));
+	glm::mat4 proj = glm::perspective(glm::radians(45.0), 800.0 / 600.0, 0.1, 100.0);
 
 	// shader
 	Prog prog("dir", "dir");
@@ -90,10 +89,9 @@ int main() {
 	// initialize
 	prog.use();
 
-	GLint
-		uniModel = glGetUniformLocation(prog._id, "model"),
-	 	uniView = glGetUniformLocation(prog._id, "view"),
-	 	uniProj = glGetUniformLocation(prog._id, "proj");
+	GLint uniModel = glGetUniformLocation(prog._id, "model");
+	GLint uniView = glGetUniformLocation(prog._id, "view");
+	GLint uniProj = glGetUniformLocation(prog._id, "proj");
 
 	GLint uniTex = glGetUniformLocation(prog._id, "tex");
 
@@ -101,7 +99,9 @@ int main() {
 	glGenTextures(1, &tex);
 	glBindTexture(GL_TEXTURE_2D, tex);
 
-	int w, h, c;
+	int w;
+	int h;
+	int c;
 	unsigned char* data = stbi_load("res/tex/c_energydrink_blu.png", &w, &h, &c, 3);
 	if (!data) {
 		std::cout << "Error: Couldn't load" << std::endl;
@@ -127,10 +127,9 @@ int main() {
 
 	progOutline.use();
 
-	GLint
-		uniModelOutline = glGetUniformLocation(progOutline._id, "model"),
-		uniViewOutline = glGetUniformLocation(progOutline._id, "view"),
-		uniProjOutline = glGetUniformLocation(progOutline._id, "proj");
+	GLint uniModelOutline = glGetUniformLocation(progOutline._id, "model");
+	GLint uniViewOutline = glGetUniformLocation(progOutline._id, "view");
+	GLint uniProjOutline = glGetUniformLocation(progOutline._id, "proj");
 
 	glUniformMatrix4fv(uniProjOutline, 1, GL_FALSE, glm::value_ptr(proj));
 	glUniformMatrix4fv(uniViewOutline, 1, GL_FALSE, glm::value_ptr(view));
