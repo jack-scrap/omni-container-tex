@@ -15,7 +15,7 @@
 int main() {
 	Disp disp("asdf", 800, 600);
 
-	glm::vec3 scale = glm::vec3(0.2, 0.2, 0.2);
+	glm::vec3 scale = glm::vec3(0.02, 0.02, 0.02);
 
 	// data
 	GLuint vao;
@@ -27,8 +27,8 @@ int main() {
 	glGenBuffers(1, &vbo);
 	glBindBuffer(GL_ARRAY_BUFFER, vbo);
 
-	std::vector<GLfloat> vtcRaw = util::mesh::rd::vtc("c_shotgun");
-	std::vector<GLushort> vtcIdc = util::mesh::rd::idc("c_shotgun", 0);
+	std::vector<GLfloat> vtcRaw = util::mesh::rd::vtc("bonk");
+	std::vector<GLushort> vtcIdc = util::mesh::rd::idc("bonk", 0);
 
 	std::vector<GLfloat> vtc;
 	for (int i = 0; i < vtcIdc.size(); i++) {
@@ -44,8 +44,8 @@ int main() {
 	glGenBuffers(1, &stbo);
 	glBindBuffer(GL_ARRAY_BUFFER, stbo);
 
-	std::vector<GLfloat> stRaw = util::mesh::rd::st("c_shotgun");
-	std::vector<GLushort> stIdc = util::mesh::rd::idc("c_shotgun", 1);
+	std::vector<GLfloat> stRaw = util::mesh::rd::st("bonk");
+	std::vector<GLushort> stIdc = util::mesh::rd::idc("bonk", 1);
 
 	std::vector<GLfloat> st;
 	for (int i = 0; i < stIdc.size(); i++) {
@@ -97,7 +97,7 @@ int main() {
 	glBindTexture(GL_TEXTURE_2D, tex);
 
 	int w, h, c;
-	unsigned char* data = stbi_load("c_shotgun.png", &w, &h, &c, 3);
+	unsigned char* data = stbi_load("c_energydrink_blu.png", &w, &h, &c, 3);
 	if (!data) {
 		std::cout << "Error: Couldn't load" << std::endl;
 
