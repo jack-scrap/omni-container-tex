@@ -17,6 +17,8 @@ int main() {
 
 	glm::vec3 scale = glm::vec3(0.02, 0.02, 0.02);
 
+	std::string name = "bonk";
+
 	// data
 	GLuint vao;
 	glGenVertexArrays(1, &vao);
@@ -27,8 +29,8 @@ int main() {
 	glGenBuffers(1, &vbo);
 	glBindBuffer(GL_ARRAY_BUFFER, vbo);
 
-	std::vector<GLfloat> vtcRaw = util::mesh::rd::vtc("bonk");
-	std::vector<GLushort> vtcIdc = util::mesh::rd::idc("bonk", 0);
+	std::vector<GLfloat> vtcRaw = util::mesh::rd::vtc(name);
+	std::vector<GLushort> vtcIdc = util::mesh::rd::idc(name, 0);
 
 	std::vector<GLfloat> vtc;
 	for (int i = 0; i < vtcIdc.size(); i++) {
@@ -44,8 +46,8 @@ int main() {
 	glGenBuffers(1, &stbo);
 	glBindBuffer(GL_ARRAY_BUFFER, stbo);
 
-	std::vector<GLfloat> stRaw = util::mesh::rd::st("bonk");
-	std::vector<GLushort> stIdc = util::mesh::rd::idc("bonk", 1);
+	std::vector<GLfloat> stRaw = util::mesh::rd::st(name);
+	std::vector<GLushort> stIdc = util::mesh::rd::idc(name, 1);
 
 	std::vector<GLfloat> st;
 	for (int i = 0; i < stIdc.size(); i++) {
