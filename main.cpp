@@ -21,6 +21,7 @@ int main() {
 	glm::vec3 scale = glm::vec3(0.02, 0.02, 0.02);
 
 	std::string modelName = "bonk";
+	std::string texName = "c_energydrink_blu";
 
 	// data
 	GLuint vao;
@@ -100,7 +101,7 @@ int main() {
 	int w;
 	int h;
 	int c;
-	unsigned char* data = stbi_load("res/tex/c_energydrink_blu.png", &w, &h, &c, 3);
+	unsigned char* data = stbi_load(std::string("res/tex/" + texName + ".png").c_str(), &w, &h, &c, 3);
 	if (!data) {
 		std::cout << "Error: Couldn't load" << std::endl;
 	}
