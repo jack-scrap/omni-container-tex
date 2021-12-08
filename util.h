@@ -23,6 +23,7 @@ namespace util {
 	namespace mesh {
 		namespace rd {
 			std::vector<GLfloat> vtc(std::string fName);
+			std::vector<GLfloat> st(std::string fName);
 
 			std::vector<GLushort> idc(std::string fName, unsigned int attr);
 		}

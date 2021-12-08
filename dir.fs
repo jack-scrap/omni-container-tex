@@ -1,13 +1,10 @@
 #version 400
 
 in vec3 _pos;
+in vec2 _st;
 
-vec3 sun = vec3(3.0, 3.0, 3.0);
+uniform sampler2D tex;
 
 void main() {
-	vec3 normFace = normalize(cross(dFdx(_pos), dFdy(_pos)));
-
-	float ins = max(dot(normFace, normalize(sun)), 0.0);
-
-	gl_FragColor = vec4(vec3(ins), 1.0);
+	gl_FragColor = texture(tex, _st);
 }

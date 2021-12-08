@@ -27,6 +27,14 @@ int main() {
 	std::vector<GLfloat> vtc = util::mesh::rd::vtc("c_shotgun");
 	glBufferData(GL_ARRAY_BUFFER, vtc.size() * sizeof (GLfloat), &vtc[0], GL_STATIC_DRAW);
 
+	// texture coordinate
+	GLuint stbo;
+	glGenBuffers(1, &stbo);
+	glBindBuffer(GL_ARRAY_BUFFER, stbo);
+
+	std::vector<GLfloat> st = util::mesh::rd::st("c_shotgun");
+	glBufferData(GL_ARRAY_BUFFER, st.size() * sizeof (GLfloat), &st[0], GL_STATIC_DRAW);
+
 	GLuint ibo;
 	glGenBuffers(1, &ibo);
 	glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, ibo);
@@ -43,9 +51,15 @@ int main() {
 	Prog prog("dir", "dir");
 
 	/// attribute
+	glBindBuffer(GL_ARRAY_BUFFER, vbo);
 	GLint attrPos = glGetAttribLocation(prog._id, "pos");
 	glVertexAttribPointer(attrPos, 3, GL_FLOAT, GL_FALSE, 0, (GLvoid*) 0);
 	glEnableVertexAttribArray(attrPos);
+
+	glBindBuffer(GL_ARRAY_BUFFER, stbo);
+	GLint attrSt = glGetAttribLocation(prog._id, "st");
+	glVertexAttribPointer(attrSt, 2, GL_FLOAT, GL_FALSE, 0, (GLvoid*) 0);
+	glEnableVertexAttribArray(attrSt);
 
 	/// uniform
 	GLint
@@ -63,6 +77,7 @@ int main() {
 	Prog progOutline("outline", "outline");
 
 	/// attribute
+	glBindBuffer(GL_ARRAY_BUFFER, vbo);
 	GLint attrPosOutline = glGetAttribLocation(prog._id, "pos");
 	glVertexAttribPointer(attrPosOutline, 3, GL_FLOAT, GL_FALSE, 0, (GLvoid*) 0);
 	glEnableVertexAttribArray(attrPosOutline);
