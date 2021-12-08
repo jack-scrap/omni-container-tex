@@ -29,8 +29,8 @@ int main() {
 	glGenBuffers(1, &vbo);
 	glBindBuffer(GL_ARRAY_BUFFER, vbo);
 
-	std::vector<GLfloat> vtcRaw = util::mesh::rd::vtc(name);
-	std::vector<GLushort> vtcIdc = util::mesh::rd::idc(name, 0);
+	std::vector<GLfloat> vtcRaw = util::mesh::rd::vtc("res/obj/" + name);
+	std::vector<GLushort> vtcIdc = util::mesh::rd::idc("res/obj/" + name, 0);
 
 	std::vector<GLfloat> vtc;
 	for (int i = 0; i < vtcIdc.size(); i++) {
@@ -46,8 +46,8 @@ int main() {
 	glGenBuffers(1, &stbo);
 	glBindBuffer(GL_ARRAY_BUFFER, stbo);
 
-	std::vector<GLfloat> stRaw = util::mesh::rd::st(name);
-	std::vector<GLushort> stIdc = util::mesh::rd::idc(name, 1);
+	std::vector<GLfloat> stRaw = util::mesh::rd::st("res/obj/" + name);
+	std::vector<GLushort> stIdc = util::mesh::rd::idc("res/obj/" + name, 1);
 
 	std::vector<GLfloat> st;
 	for (int i = 0; i < stIdc.size(); i++) {
@@ -61,7 +61,7 @@ int main() {
 	GLuint ibo;
 	glGenBuffers(1, &ibo);
 	glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, ibo);
-	std::vector<GLushort> idc = util::mesh::rd::idc("c_shotgun", 0);
+	std::vector<GLushort> idc = util::mesh::rd::idc("res/obj/c_shotgun", 0);
 	glBufferData(GL_ELEMENT_ARRAY_BUFFER, idc.size() * sizeof (GLfloat), &idc[0], GL_STATIC_DRAW);
 
 	// matrix
@@ -99,7 +99,7 @@ int main() {
 	glBindTexture(GL_TEXTURE_2D, tex);
 
 	int w, h, c;
-	unsigned char* data = stbi_load("c_energydrink_blu.png", &w, &h, &c, 3);
+	unsigned char* data = stbi_load("res/tex/c_energydrink_blu.png", &w, &h, &c, 3);
 	if (!data) {
 		std::cout << "Error: Couldn't load" << std::endl;
 
