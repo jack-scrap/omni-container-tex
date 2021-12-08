@@ -47,7 +47,7 @@ int main() {
 	std::vector<GLfloat> stRaw = util::mesh::rd::st("c_shotgun");
 	std::vector<GLushort> stIdc = util::mesh::rd::idc("c_shotgun", 1);
 
-	std::vector<GLfloat> st = util::mesh::rd::st("c_shotgun");
+	std::vector<GLfloat> st;
 	for (int i = 0; i < stIdc.size(); i++) {
 		for (int a = 0; a < 2; a++) {
 			st.push_back(stRaw[(stIdc[i] * 2) + a]);
