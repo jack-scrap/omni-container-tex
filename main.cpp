@@ -32,8 +32,8 @@ int main() {
 
 	std::vector<GLfloat> vtc;
 	for (int i = 0; i < vtcIdc.size(); i++) {
-		for (int v = 0; v < 3; v++) {
-			vtc.push_back(vtcRaw[(vtcIdc[i] * 3) + v]);
+		for (int a = 0; a < 3; a++) {
+			vtc.push_back(vtcRaw[(vtcIdc[i] * 3) + a]);
 		}
 	}
 
@@ -49,8 +49,8 @@ int main() {
 
 	std::vector<GLfloat> st = util::mesh::rd::st("c_shotgun");
 	for (int i = 0; i < stIdc.size(); i++) {
-		for (int v = 0; v < 2; v++) {
-			st.push_back(stRaw[(stIdc[i] * 2) + v]);
+		for (int a = 0; a < 2; a++) {
+			st.push_back(stRaw[(stIdc[i] * 2) + a]);
 		}
 	}
 
