@@ -1,5 +1,8 @@
 #define STB_IMAGE_IMPLEMENTATION
 
+#define VTX_SZ 3
+#define ST_SZ 2
+
 #include <vector>
 #include <sstream>
 #include <GL/glew.h>
@@ -34,8 +37,8 @@ int main() {
 
 	std::vector<GLfloat> vtc;
 	for (int i = 0; i < vtcIdc.size(); i++) {
-		for (int a = 0; a < 3; a++) {
-			vtc.push_back(vtcRaw[(vtcIdc[i] * 3) + a]);
+		for (int a = 0; a < VTX_SZ; a++) {
+			vtc.push_back(vtcRaw[(vtcIdc[i] * VTX_SZ) + a]);
 		}
 	}
 
@@ -51,8 +54,8 @@ int main() {
 
 	std::vector<GLfloat> st;
 	for (int i = 0; i < stIdc.size(); i++) {
-		for (int a = 0; a < 2; a++) {
-			st.push_back(stRaw[(stIdc[i] * 2) + a]);
+		for (int a = 0; a < ST_SZ; a++) {
+			st.push_back(stRaw[(stIdc[i] * ST_SZ) + a]);
 		}
 	}
 
