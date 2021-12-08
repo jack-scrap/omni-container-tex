@@ -81,7 +81,7 @@ int main() {
 
 	glBindBuffer(GL_ARRAY_BUFFER, stbo);
 	GLint attrSt = glGetAttribLocation(prog._id, "st");
-	glVertexAttribPointer(attrSt, 2, GL_FLOAT, GL_FALSE, 0, (GLvoid*) 0);
+	glVertexAttribPointer(attrSt, ST_SZ, GL_FLOAT, GL_FALSE, 0, (GLvoid*) 0);
 	glEnableVertexAttribArray(attrSt);
 
 	// initialize
@@ -118,7 +118,7 @@ int main() {
 	/// attribute
 	glBindBuffer(GL_ARRAY_BUFFER, vbo);
 	GLint attrPosOutline = glGetAttribLocation(prog._id, "pos");
-	glVertexAttribPointer(attrPosOutline, 3, GL_FLOAT, GL_FALSE, 0, (GLvoid*) 0);
+	glVertexAttribPointer(attrPosOutline, VTX_SZ, GL_FLOAT, GL_FALSE, 0, (GLvoid*) 0);
 	glEnableVertexAttribArray(attrPosOutline);
 
 	progOutline.use();
