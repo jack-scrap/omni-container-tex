@@ -1,3 +1,5 @@
+#define STB_IMAGE_IMPLEMENTATION
+
 #include <vector>
 #include <sstream>
 #include <GL/glew.h>
@@ -8,6 +10,7 @@
 #include "disp.h"
 #include "prog.h"
 #include "util.h"
+#include "stb_image.h"
 
 int main() {
 	Disp disp("asdf", 800, 600);
@@ -68,6 +71,24 @@ int main() {
 		uniModel = glGetUniformLocation(prog._id, "model"),
 	 	uniView = glGetUniformLocation(prog._id, "view"),
 	 	uniProj = glGetUniformLocation(prog._id, "proj");
+
+	GLint uniTex = glGetUniformLocation(prog._id, "tex");
+
+	GLuint tex;
+	glGenTextures(1, &tex);
+	glBindTexture(GL_TEXTURE_2D, tex);
+
+	int w, h, c;
+	unsigned char* data = stbi_load("dirt.jpg", &w, &h, &c, 3);
+	if (!data) {
+		std::cout << "Error: Couldn't load" << std::endl;
+
+		exit(0);
+	}
+
+	glTexImage2D(GL_TEXTURE_2D, 0, GL_RGB, w, h, 0, GL_RGB, GL_UNSIGNED_BYTE, data);
+
+	glGenerateMipmap(GL_TEXTURE_2D);
 
 	glUniformMatrix4fv(uniProj, 1, GL_FALSE, glm::value_ptr(proj));
 	glUniformMatrix4fv(uniView, 1, GL_FALSE, glm::value_ptr(view));
