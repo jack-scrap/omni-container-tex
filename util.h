@@ -5,17 +5,19 @@
 #include <GL/glew.h>
 
 namespace util {
-	template <typename T>
-	T rd(std::string fName);
+	namespace fs {
+		template <typename T>
+		T rd(std::string fName);
 
-	template <>
-	std::string rd(std::string fName);
+		template <>
+		std::string rd(std::string fName);
 
-	template <>
-	std::vector<std::string> rd(std::string fName);
+		template <>
+		std::vector<std::string> rd(std::string fName);
 
-	namespace str {
-		std::vector<std::string> split(std::string buff, char delim);
+		namespace str {
+			std::vector<std::string> split(std::string buff, char delim);
+		}
 	}
 
 	namespace mesh {
