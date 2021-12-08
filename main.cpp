@@ -41,7 +41,6 @@ int main() {
 			vtc.push_back(vtcRaw[(vtcIdc[i] * VTX_SZ) + a]);
 		}
 	}
-
 	glBufferData(GL_ARRAY_BUFFER, vtc.size() * sizeof (GLfloat), &vtc[0], GL_STATIC_DRAW);
 
 	// texture coordinate
@@ -58,7 +57,6 @@ int main() {
 			st.push_back(stRaw[(stIdc[i] * ST_SZ) + a]);
 		}
 	}
-
 	glBufferData(GL_ARRAY_BUFFER, st.size() * sizeof (GLfloat), &st[0], GL_STATIC_DRAW);
 
 	GLuint ibo;
