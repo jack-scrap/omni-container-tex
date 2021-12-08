@@ -103,8 +103,6 @@ int main() {
 	unsigned char* data = stbi_load("res/tex/c_energydrink_blu.png", &w, &h, &c, 3);
 	if (!data) {
 		std::cout << "Error: Couldn't load" << std::endl;
-
-		exit(0);
 	}
 
 	glTexImage2D(GL_TEXTURE_2D, 0, GL_RGB, w, h, 0, GL_RGB, GL_UNSIGNED_BYTE, data);
