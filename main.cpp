@@ -79,7 +79,7 @@ int main() {
 	glBindTexture(GL_TEXTURE_2D, tex);
 
 	int w, h, c;
-	unsigned char* data = stbi_load("dirt.jpg", &w, &h, &c, 3);
+	unsigned char* data = stbi_load("c_shotgun.png", &w, &h, &c, 3);
 	if (!data) {
 		std::cout << "Error: Couldn't load" << std::endl;
 
