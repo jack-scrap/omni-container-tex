@@ -61,14 +61,13 @@ int main() {
 	glVertexAttribPointer(attrSt, 2, GL_FLOAT, GL_FALSE, 0, (GLvoid*) 0);
 	glEnableVertexAttribArray(attrSt);
 
-	/// uniform
+	// initialize
+	prog.use();
+
 	GLint
 		uniModel = glGetUniformLocation(prog._id, "model"),
 	 	uniView = glGetUniformLocation(prog._id, "view"),
 	 	uniProj = glGetUniformLocation(prog._id, "proj");
-
-	// initialize
-	prog.use();
 
 	glUniformMatrix4fv(uniProj, 1, GL_FALSE, glm::value_ptr(proj));
 	glUniformMatrix4fv(uniView, 1, GL_FALSE, glm::value_ptr(view));
@@ -82,13 +81,12 @@ int main() {
 	glVertexAttribPointer(attrPosOutline, 3, GL_FLOAT, GL_FALSE, 0, (GLvoid*) 0);
 	glEnableVertexAttribArray(attrPosOutline);
 
-	/// uniform
+	progOutline.use();
+
 	GLint
 		uniModelOutline = glGetUniformLocation(progOutline._id, "model"),
-	 	uniViewOutline = glGetUniformLocation(progOutline._id, "view"),
-	 	uniProjOutline = glGetUniformLocation(progOutline._id, "proj");
-
-	progOutline.use();
+		uniViewOutline = glGetUniformLocation(progOutline._id, "view"),
+		uniProjOutline = glGetUniformLocation(progOutline._id, "proj");
 
 	glUniformMatrix4fv(uniProjOutline, 1, GL_FALSE, glm::value_ptr(proj));
 	glUniformMatrix4fv(uniViewOutline, 1, GL_FALSE, glm::value_ptr(view));
