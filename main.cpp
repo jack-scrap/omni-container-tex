@@ -27,7 +27,16 @@ int main() {
 	glGenBuffers(1, &vbo);
 	glBindBuffer(GL_ARRAY_BUFFER, vbo);
 
-	std::vector<GLfloat> vtc = util::mesh::rd::vtc("c_shotgun");
+	std::vector<GLfloat> vtcRaw = util::mesh::rd::vtc("c_shotgun");
+	std::vector<GLushort> vtcIdc = util::mesh::rd::idc("c_shotgun", 0);
+
+	std::vector<GLfloat> vtc;
+	for (int i = 0; i < vtcIdc.size(); i++) {
+		for (int v = 0; v < 3; v++) {
+			vtc.push_back(vtcRaw[(vtcIdc[i] * 3) + v]);
+		}
+	}
+
 	glBufferData(GL_ARRAY_BUFFER, vtc.size() * sizeof (GLfloat), &vtc[0], GL_STATIC_DRAW);
 
 	// texture coordinate
@@ -148,7 +157,7 @@ int main() {
 
 		glUniformMatrix4fv(uniModelOutline, 1, GL_FALSE, glm::value_ptr(model));
 
-		glDrawElements(GL_TRIANGLES, idc.size(), GL_UNSIGNED_SHORT, (GLvoid*) 0);
+		glDrawArrays(GL_TRIANGLES, 0, idc.size());
 
 		progOutline.unUse();
 
@@ -158,7 +167,7 @@ int main() {
 
 		glUniformMatrix4fv(uniModel, 1, GL_FALSE, glm::value_ptr(model));
 
-		glDrawElements(GL_TRIANGLES, idc.size(), GL_UNSIGNED_SHORT, (GLvoid*) 0);
+		glDrawArrays(GL_TRIANGLES, 0, idc.size());
 
 		prog.unUse();
 
