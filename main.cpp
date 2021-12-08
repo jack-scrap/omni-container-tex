@@ -20,7 +20,7 @@ int main() {
 
 	glm::vec3 scale = glm::vec3(0.02, 0.02, 0.02);
 
-	std::string modelName = "bonk";
+	std::string modelName = "c_bonk";
 	std::string texName = "c_energydrink_blu";
 
 	// data
