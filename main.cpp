@@ -20,7 +20,7 @@ int main() {
 
 	glm::vec3 scale = glm::vec3(0.02, 0.02, 0.02);
 
-	std::string name = "bonk";
+	std::string model = "bonk";
 
 	// data
 	GLuint vao;
@@ -32,8 +32,8 @@ int main() {
 	glGenBuffers(1, &vbo);
 	glBindBuffer(GL_ARRAY_BUFFER, vbo);
 
-	std::vector<GLfloat> vtcRaw = util::mesh::rd::vtc("res/obj/" + name);
-	std::vector<GLushort> vtcIdc = util::mesh::rd::idc("res/obj/" + name, 0);
+	std::vector<GLfloat> vtcRaw = util::mesh::rd::vtc("res/obj/" + model);
+	std::vector<GLushort> vtcIdc = util::mesh::rd::idc("res/obj/" + model, 0);
 
 	std::vector<GLfloat> vtc;
 	for (int i = 0; i < vtcIdc.size(); i++) {
@@ -48,8 +48,8 @@ int main() {
 	glGenBuffers(1, &stbo);
 	glBindBuffer(GL_ARRAY_BUFFER, stbo);
 
-	std::vector<GLfloat> stRaw = util::mesh::rd::st("res/obj/" + name);
-	std::vector<GLushort> stIdc = util::mesh::rd::idc("res/obj/" + name, 1);
+	std::vector<GLfloat> stRaw = util::mesh::rd::st("res/obj/" + model);
+	std::vector<GLushort> stIdc = util::mesh::rd::idc("res/obj/" + model, 1);
 
 	std::vector<GLfloat> st;
 	for (int i = 0; i < stIdc.size(); i++) {
