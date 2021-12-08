@@ -5,9 +5,14 @@
 #include <GL/glew.h>
 
 namespace util {
-	std::string rd(std::string name);
+	template <typename T>
+	T rd(std::string fName);
 
-	std::vector<std::string> rdVec(std::string fName);
+	template <>
+	std::string rd(std::string fName);
+
+	template <>
+	std::vector<std::string> rd(std::string fName);
 
 	namespace str {
 		std::vector<std::string> split(std::string buff, char delim);

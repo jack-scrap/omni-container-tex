@@ -19,7 +19,7 @@ Shad::Shad(std::string name, bool vtx) {
 
 	std::string path = std::string(name) + std::string(".") + ext;
 
-	std::string txt = util::rd(path);
+	std::string txt = util::rd<std::string>(path);
 	const char* src = txt.c_str();
 
 	GLint succ;
