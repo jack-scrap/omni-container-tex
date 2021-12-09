@@ -7,3 +7,9 @@ SDL_Color bg = {
 	39,
 	37
 };
+
+SDL_Color beige = {
+	235,
+	226,
+	202
+};
