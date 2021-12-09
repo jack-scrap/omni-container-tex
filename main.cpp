@@ -12,6 +12,7 @@
 #include "util.h"
 #include "stb_image.h"
 #include "prop.h"
+#include "col.h"
 
 int main() {
 	Disp disp("asdf", 800, 600);
@@ -43,7 +44,7 @@ int main() {
 			}
 		}
 
-		disp.clear(42 / 255.0, 39 / 255.0, 37 / 255.0, 1);
+		disp.clear(bg.r / 255.0, bg.g / 255.0, bg.b / 255.0, 1);
 
 		prop._model = glm::mat4(1.0);
 		prop._model = glm::rotate(prop._model, (GLfloat) (t * (M_PI / 100.0)), glm::vec3(0, 1, 0));
