@@ -21,6 +21,8 @@ int main() {
 
 	glm::vec3 scale = glm::vec3(0.02, 0.02, 0.02);
 
+	bool pan = false;
+
 	SDL_Event e;
 	unsigned int r = 0;
 	while (disp.open) {
@@ -43,12 +45,22 @@ int main() {
 				}
 			}
 
+			if (e.type == SDL_MOUSEBUTTONDOWN) {
+				pan = true;
+			}
+
+			if (e.type == SDL_MOUSEBUTTONUP) {
+				pan = false;
+			}
+
 			if (e.type == SDL_MOUSEMOTION) {
-				prop._model = glm::mat4(1.0);
-				prop._model = glm::rotate(prop._model, (GLfloat) (r * (M_PI / 100.0)), glm::vec3(0, 1, 0));
-				prop._model = glm::scale(prop._model, scale);
-				
-				r++;
+				if (pan) {
+					prop._model = glm::mat4(1.0);
+					prop._model = glm::rotate(prop._model, (GLfloat) (r * (M_PI / 100.0)), glm::vec3(0, 1, 0));
+					prop._model = glm::scale(prop._model, scale);
+
+					r++;
+				}
 			}
 		}
 
