@@ -34,7 +34,7 @@ class Obj {
 		glm::mat4 _view;
 		glm::mat4 _proj;
 
-		Obj(std::string modelName, std::string texName);
+		Obj(std::string name, std::string texName);
 
 		void draw();
 };
