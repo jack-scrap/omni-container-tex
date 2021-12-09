@@ -95,19 +95,17 @@ Obj::Obj(std::string modelName, std::string texName) :
 		glUniformMatrix4fv(_uniView, 1, GL_FALSE, glm::value_ptr(_view));
 		glUniformMatrix4fv(_uniModel, 1, GL_FALSE, glm::value_ptr(_model));
 
-		Prog progOutline("res/shad/outline", "res/shad/outline");
-
 		/// attribute
 		glBindBuffer(GL_ARRAY_BUFFER, _vbo);
 		GLint attrPosOutline = glGetAttribLocation(_prog._id, "pos");
 		glVertexAttribPointer(attrPosOutline, VTX_SZ, GL_FLOAT, GL_FALSE, 0, (GLvoid*) 0);
 		glEnableVertexAttribArray(attrPosOutline);
 
-		progOutline.use();
+		_progOutline.use();
 
-		_uniModelOutline = glGetUniformLocation(progOutline._id, "model");
-		_uniViewOutline = glGetUniformLocation(progOutline._id, "view");
-		_uniProjOutline = glGetUniformLocation(progOutline._id, "proj");
+		_uniModelOutline = glGetUniformLocation(_progOutline._id, "model");
+		_uniViewOutline = glGetUniformLocation(_progOutline._id, "view");
+		_uniProjOutline = glGetUniformLocation(_progOutline._id, "proj");
 
 		glUniformMatrix4fv(_uniProjOutline, 1, GL_FALSE, glm::value_ptr(_proj));
 		glUniformMatrix4fv(_uniViewOutline, 1, GL_FALSE, glm::value_ptr(_view));
