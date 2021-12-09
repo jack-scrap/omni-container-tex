@@ -6,7 +6,7 @@
 #include "stb_image.h"
 
 Prop::Prop(std::string modelName, std::string texName) :
-	_prog("res/shad/dir", "res/shad/dir"),
+	_prog("res/shad/tex", "res/shad/tex"),
 	_progOutline("res/shad/outline", "res/shad/outline") {
 		glGenVertexArrays(1, &_vao);
 		glBindVertexArray(_vao);
