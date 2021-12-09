@@ -1,6 +1,6 @@
 CXX=g++
 
-STATIC=main disp prog util
+STATIC=main disp prog util obj
 OBJ_STATIC=$(patsubst %, %.o, $(STATIC))
 
 GL=-lGLEW -lGL
