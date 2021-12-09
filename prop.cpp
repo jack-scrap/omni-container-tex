@@ -2,10 +2,10 @@
 #include <iostream>
 #include <glm/gtc/matrix_transform.hpp>
 
-#include "obj.h"
+#include "prop.h"
 #include "stb_image.h"
 
-Obj::Obj(std::string modelName, std::string texName) :
+Prop::Prop(std::string modelName, std::string texName) :
 	_prog("res/shad/dir", "res/shad/dir"),
 	_progOutline("res/shad/outline", "res/shad/outline") {
 		glGenVertexArrays(1, &_vao);
@@ -106,7 +106,7 @@ Obj::Obj(std::string modelName, std::string texName) :
 		_progOutline.unUse();
 	}
 
-void Obj::draw() {
+void Prop::draw() {
 	glDisable(GL_DEPTH_TEST);
 
 	_progOutline.use();

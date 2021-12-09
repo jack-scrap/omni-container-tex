@@ -9,7 +9,7 @@
 
 #include "prog.h"
 
-class Obj {
+class Prop {
 	private:
 		unsigned int _noEl;
 
@@ -43,7 +43,7 @@ class Obj {
 		glm::mat4 _view;
 		glm::mat4 _proj;
 
-		Obj(std::string modelName, std::string texName);
+		Prop(std::string modelName, std::string texName);
 
 		void draw();
 };
