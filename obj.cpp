@@ -75,9 +75,9 @@ Obj::Obj(std::string name, std::string texName) :
 
 		GLint uniTex = glGetUniformLocation(_prog._id, "tex");
 
-		GLuint tex;
-		glGenTextures(1, &tex);
-		glBindTexture(GL_TEXTURE_2D, tex);
+		_tex;
+		glGenTextures(1, &_tex);
+		glBindTexture(GL_TEXTURE_2D, _tex);
 
 		int wd;
 		int ht;

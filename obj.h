@@ -29,6 +29,8 @@ class Obj {
 		GLint _uniViewOutline;
 		GLint _uniProjOutline;
 
+		GLuint _tex;
+
 	public:
 		glm::mat4 _model;
 		glm::mat4 _view;
