@@ -16,9 +16,9 @@
 int main() {
 	Disp disp("asdf", 800, 600);
 
-	glm::vec3 scale = glm::vec3(0.02, 0.02, 0.02);
-
 	Prop prop("c_bonk", "c_energydrink_blu");
+
+	glm::vec3 scale = glm::vec3(0.02, 0.02, 0.02);
 
 	SDL_Event e;
 	unsigned int t = 0;
