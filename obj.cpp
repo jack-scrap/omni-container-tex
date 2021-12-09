@@ -51,14 +51,14 @@ Obj::Obj(std::string modelName, std::string texName) :
 		_proj = glm::perspective(glm::radians(45.0), 800.0 / 600.0, 0.1, 100.0);
 
 		glBindBuffer(GL_ARRAY_BUFFER, _vbo);
-		GLint attrPos = glGetAttribLocation(_prog._id, "pos");
-		glVertexAttribPointer(attrPos, 3, GL_FLOAT, GL_FALSE, 0, (GLvoid*) 0);
-		glEnableVertexAttribArray(attrPos);
+		_attrPos = glGetAttribLocation(_prog._id, "pos");
+		glVertexAttribPointer(_attrPos, 3, GL_FLOAT, GL_FALSE, 0, (GLvoid*) 0);
+		glEnableVertexAttribArray(_attrPos);
 
 		glBindBuffer(GL_ARRAY_BUFFER, _stbo);
-		GLint attrSt = glGetAttribLocation(_prog._id, "st");
-		glVertexAttribPointer(attrSt, ST_SZ, GL_FLOAT, GL_FALSE, 0, (GLvoid*) 0);
-		glEnableVertexAttribArray(attrSt);
+		_attrSt = glGetAttribLocation(_prog._id, "st");
+		glVertexAttribPointer(_attrSt, ST_SZ, GL_FLOAT, GL_FALSE, 0, (GLvoid*) 0);
+		glEnableVertexAttribArray(_attrSt);
 
 		_prog.use();
 
@@ -66,7 +66,7 @@ Obj::Obj(std::string modelName, std::string texName) :
 		_uniView = glGetUniformLocation(_prog._id, "view");
 		_uniProj = glGetUniformLocation(_prog._id, "proj");
 
-		GLint uniTex = glGetUniformLocation(_prog._id, "tex");
+		_uniTex = glGetUniformLocation(_prog._id, "tex");
 
 		_tex;
 		glGenTextures(1, &_tex);

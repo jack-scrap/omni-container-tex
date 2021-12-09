@@ -23,6 +23,9 @@ class Obj {
 		Prog _prog;
 		Prog _progOutline;
 
+		GLint _attrPos;
+		GLint _attrSt;
+
 		GLint _uniModel;
 		GLint _uniView;
 		GLint _uniProj;
@@ -30,6 +33,8 @@ class Obj {
 		GLint _uniModelOutline;
 		GLint _uniViewOutline;
 		GLint _uniProjOutline;
+
+		GLuint _uniTex;
 
 		GLuint _tex;
 
