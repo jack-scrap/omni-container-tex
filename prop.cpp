@@ -50,6 +50,8 @@ Prop::Prop(std::string modelName, std::string texName) :
 		_view = glm::lookAt(glm::vec3(3.0, 3.0, 3.0), glm::vec3(0.0, 0.0, 0.0), glm::vec3(0, 1, 0));
 		_proj = glm::perspective(glm::radians(45.0), 800.0 / 600.0, 0.1, 100.0);
 
+		_prog.use();
+
 		glBindBuffer(GL_ARRAY_BUFFER, _vbo);
 		_attrPos = glGetAttribLocation(_prog._id, "pos");
 		glVertexAttribPointer(_attrPos, 3, GL_FLOAT, GL_FALSE, 0, (GLvoid*) 0);
@@ -59,8 +61,6 @@ Prop::Prop(std::string modelName, std::string texName) :
 		_attrSt = glGetAttribLocation(_prog._id, "st");
 		glVertexAttribPointer(_attrSt, ST_SZ, GL_FLOAT, GL_FALSE, 0, (GLvoid*) 0);
 		glEnableVertexAttribArray(_attrSt);
-
-		_prog.use();
 
 		_uniModel = glGetUniformLocation(_prog._id, "model");
 		_uniView = glGetUniformLocation(_prog._id, "view");
@@ -87,6 +87,8 @@ Prop::Prop(std::string modelName, std::string texName) :
 		glUniformMatrix4fv(_uniProj, 1, GL_FALSE, glm::value_ptr(_proj));
 		glUniformMatrix4fv(_uniView, 1, GL_FALSE, glm::value_ptr(_view));
 		glUniformMatrix4fv(_uniModel, 1, GL_FALSE, glm::value_ptr(_model));
+
+		_prog.unUse();
 
 		_progOutline.use();
 
