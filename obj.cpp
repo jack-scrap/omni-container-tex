@@ -27,9 +27,8 @@ Obj::Obj(std::string modelName, std::string texName) :
 		}
 		glBufferData(GL_ARRAY_BUFFER, vtc.size() * sizeof (GLfloat), &vtc[0], GL_STATIC_DRAW);
 
-		GLuint stbo;
-		glGenBuffers(1, &stbo);
-		glBindBuffer(GL_ARRAY_BUFFER, stbo);
+		glGenBuffers(1, &_stbo);
+		glBindBuffer(GL_ARRAY_BUFFER, _stbo);
 
 		std::vector<GLfloat> stRaw = util::mesh::rd::st("res/obj/" + modelName);
 		std::vector<GLushort> stIdc = util::mesh::rd::idc("res/obj/" + modelName, 1);
@@ -56,7 +55,7 @@ Obj::Obj(std::string modelName, std::string texName) :
 		glVertexAttribPointer(attrPos, 3, GL_FLOAT, GL_FALSE, 0, (GLvoid*) 0);
 		glEnableVertexAttribArray(attrPos);
 
-		glBindBuffer(GL_ARRAY_BUFFER, stbo);
+		glBindBuffer(GL_ARRAY_BUFFER, _stbo);
 		GLint attrSt = glGetAttribLocation(_prog._id, "st");
 		glVertexAttribPointer(attrSt, ST_SZ, GL_FLOAT, GL_FALSE, 0, (GLvoid*) 0);
 		glEnableVertexAttribArray(attrSt);

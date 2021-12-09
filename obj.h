@@ -16,6 +16,7 @@ class Obj {
 		GLuint _vao;
 
 		GLuint _vbo;
+		GLuint _stbo;
 
 		GLuint _ibo;
 
