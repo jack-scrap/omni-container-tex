@@ -3,6 +3,8 @@ CXX=g++
 STATIC=main disp prog util prop
 OBJ_STATIC=$(patsubst %, %.o, $(STATIC))
 
+HDR=col.h
+
 GL=-lGLEW -lGL
 SDL=-lSDL2
 LDFLAGS+=$(SDL)
