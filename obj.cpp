@@ -79,15 +79,15 @@ Obj::Obj(std::string modelName, std::string texName) :
 		glGenTextures(1, &tex);
 		glBindTexture(GL_TEXTURE_2D, tex);
 
-		int w;
-		int h;
-		int c;
-		unsigned char* data = stbi_load(std::string("res/tex/" + texName + ".png").c_str(), &w, &h, &c, 3);
+		int wd;
+		int ht;
+		int chan;
+		unsigned char* data = stbi_load(std::string("res/tex/" + texName + ".png").c_str(), &wd, &ht, &chan, 3);
 		if (!data) {
 			std::cout << "Error: Couldn't load" << std::endl;
 		}
 
-		glTexImage2D(GL_TEXTURE_2D, 0, GL_RGB, w, h, 0, GL_RGB, GL_UNSIGNED_BYTE, data);
+		glTexImage2D(GL_TEXTURE_2D, 0, GL_RGB, wd, ht, 0, GL_RGB, GL_UNSIGNED_BYTE, data);
 
 		glGenerateMipmap(GL_TEXTURE_2D);
 
