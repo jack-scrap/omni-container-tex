@@ -30,14 +30,14 @@ int main() {
 
 			if (e.type == SDL_MOUSEWHEEL) {
 				if (e.wheel.y > 0) {
-					if (glm::all(glm::lessThan(scale, glm::vec3(5.0, 5.0, 5.0)))) {
-						scale += glm::vec3(0.1, 0.1, 0.1);
+					if (glm::all(glm::lessThan(scale, glm::vec3(0.05, 0.05, 0.05)))) {
+						scale += glm::vec3(0.01, 0.01, 0.01);
 					}
 				}
 
 				if (e.wheel.y < 0) {
-					if (glm::all(glm::greaterThan(scale, glm::vec3(0.5, 0.5, 0.5)))) {
-						scale -= glm::vec3(0.1, 0.1, 0.1);
+					if (glm::all(glm::greaterThan(scale, glm::vec3(0.01, 0.01, 0.01)))) {
+						scale -= glm::vec3(0.01, 0.01, 0.01);
 					}
 				}
 			}
