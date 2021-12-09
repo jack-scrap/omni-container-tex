@@ -8,11 +8,9 @@
 Obj::Obj(std::string name, std::string texName) :
 	_prog("res/shad/dir", "res/shad/dir"),
 	_progOutline("res/shad/outline", "res/shad/outline") {
-		// data
 		glGenVertexArrays(1, &_vao);
 		glBindVertexArray(_vao);
 
-		// position
 		glGenBuffers(1, &_vbo);
 		glBindBuffer(GL_ARRAY_BUFFER, _vbo);
 
@@ -29,7 +27,6 @@ Obj::Obj(std::string name, std::string texName) :
 		}
 		glBufferData(GL_ARRAY_BUFFER, vtc.size() * sizeof (GLfloat), &vtc[0], GL_STATIC_DRAW);
 
-		// texture coordinate
 		GLuint stbo;
 		glGenBuffers(1, &stbo);
 		glBindBuffer(GL_ARRAY_BUFFER, stbo);
@@ -50,12 +47,10 @@ Obj::Obj(std::string name, std::string texName) :
 		std::vector<GLushort> idc = util::mesh::rd::idc("res/obj/c_shotgun", 0);
 		glBufferData(GL_ELEMENT_ARRAY_BUFFER, idc.size() * sizeof (GLfloat), &idc[0], GL_STATIC_DRAW);
 
-		// matrix
 		_model = glm::mat4(1.0);
 		_view = glm::lookAt(glm::vec3(3, 3, 3), glm::vec3(0, 0, 0), glm::vec3(0, 1, 0));
 		_proj = glm::perspective(glm::radians(45.0), 800.0 / 600.0, 0.1, 100.0);
 
-		/// attribute
 		glBindBuffer(GL_ARRAY_BUFFER, _vbo);
 		GLint attrPos = glGetAttribLocation(_prog._id, "pos");
 		glVertexAttribPointer(attrPos, 3, GL_FLOAT, GL_FALSE, 0, (GLvoid*) 0);
@@ -66,7 +61,6 @@ Obj::Obj(std::string name, std::string texName) :
 		glVertexAttribPointer(attrSt, ST_SZ, GL_FLOAT, GL_FALSE, 0, (GLvoid*) 0);
 		glEnableVertexAttribArray(attrSt);
 
-		// initialize
 		_prog.use();
 
 		_uniModel = glGetUniformLocation(_prog._id, "model");
@@ -95,7 +89,6 @@ Obj::Obj(std::string name, std::string texName) :
 		glUniformMatrix4fv(_uniView, 1, GL_FALSE, glm::value_ptr(_view));
 		glUniformMatrix4fv(_uniModel, 1, GL_FALSE, glm::value_ptr(_model));
 
-		/// attribute
 		glBindBuffer(GL_ARRAY_BUFFER, _vbo);
 		GLint attrPosOutline = glGetAttribLocation(_prog._id, "pos");
 		glVertexAttribPointer(attrPosOutline, VTX_SZ, GL_FLOAT, GL_FALSE, 0, (GLvoid*) 0);
