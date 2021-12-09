@@ -48,7 +48,7 @@ Obj::Obj(std::string name, std::string texName) :
 		glBufferData(GL_ELEMENT_ARRAY_BUFFER, idc.size() * sizeof (GLfloat), &idc[0], GL_STATIC_DRAW);
 
 		_model = glm::mat4(1.0);
-		_view = glm::lookAt(glm::vec3(3, 3, 3), glm::vec3(0, 0, 0), glm::vec3(0, 1, 0));
+		_view = glm::lookAt(glm::vec3(3.0, 3.0, 3.0), glm::vec3(0.0, 0.0, 0.0), glm::vec3(0, 1, 0));
 		_proj = glm::perspective(glm::radians(45.0), 800.0 / 600.0, 0.1, 100.0);
 
 		glBindBuffer(GL_ARRAY_BUFFER, _vbo);
