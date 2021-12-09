@@ -5,7 +5,7 @@
 #include "obj.h"
 #include "stb_image.h"
 
-Obj::Obj(std::string name, std::string texName) :
+Obj::Obj(std::string modelName, std::string texName) :
 	_prog("res/shad/dir", "res/shad/dir"),
 	_progOutline("res/shad/outline", "res/shad/outline") {
 		glGenVertexArrays(1, &_vao);
@@ -14,8 +14,8 @@ Obj::Obj(std::string name, std::string texName) :
 		glGenBuffers(1, &_vbo);
 		glBindBuffer(GL_ARRAY_BUFFER, _vbo);
 
-		std::vector<GLfloat> vtcRaw = util::mesh::rd::vtc("res/obj/" + name);
-		std::vector<GLushort> vtcIdc = util::mesh::rd::idc("res/obj/" + name, 0);
+		std::vector<GLfloat> vtcRaw = util::mesh::rd::vtc("res/obj/" + modelName);
+		std::vector<GLushort> vtcIdc = util::mesh::rd::idc("res/obj/" + modelName, 0);
 
 		_noEl = vtcIdc.size();
 
@@ -31,8 +31,8 @@ Obj::Obj(std::string name, std::string texName) :
 		glGenBuffers(1, &stbo);
 		glBindBuffer(GL_ARRAY_BUFFER, stbo);
 
-		std::vector<GLfloat> stRaw = util::mesh::rd::st("res/obj/" + name);
-		std::vector<GLushort> stIdc = util::mesh::rd::idc("res/obj/" + name, 1);
+		std::vector<GLfloat> stRaw = util::mesh::rd::st("res/obj/" + modelName);
+		std::vector<GLushort> stIdc = util::mesh::rd::idc("res/obj/" + modelName, 1);
 
 		std::vector<GLfloat> st;
 		for (int i = 0; i < stIdc.size(); i++) {
