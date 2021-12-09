@@ -47,7 +47,6 @@ int main() {
 		disp.clear(bg.r / 255.0, bg.g / 255.0, bg.b / 255.0, 1);
 
 		prop._model = glm::mat4(1.0);
-		prop._model = glm::rotate(prop._model, (GLfloat) (t * (M_PI / 100.0)), glm::vec3(0, 1, 0));
 		prop._model = glm::scale(prop._model, scale);
 
 		prop.draw();
