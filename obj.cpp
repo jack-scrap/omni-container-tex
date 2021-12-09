@@ -6,8 +6,8 @@
 #include "stb_image.h"
 
 Obj::Obj(std::string modelName, std::string texName) :
-	_prog("dir", "dir"),
-	_progOutline("outline", "outline") {
+	_prog("res/shad/dir", "res/shad/dir"),
+	_progOutline("res/shad/outline", "res/shad/outline") {
 		// data
 		glGenVertexArrays(1, &_vao);
 		glBindVertexArray(_vao);
@@ -95,7 +95,7 @@ Obj::Obj(std::string modelName, std::string texName) :
 		glUniformMatrix4fv(_uniView, 1, GL_FALSE, glm::value_ptr(_view));
 		glUniformMatrix4fv(_uniModel, 1, GL_FALSE, glm::value_ptr(_model));
 
-		Prog progOutline("outline", "outline");
+		Prog progOutline("res/shad/outline", "res/shad/outline");
 
 		/// attribute
 		glBindBuffer(GL_ARRAY_BUFFER, _vbo);
