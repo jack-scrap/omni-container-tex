@@ -19,7 +19,7 @@ Obj::Obj(std::string modelName, std::string texName) :
 		std::vector<GLfloat> vtcRaw = util::mesh::rd::vtc("res/obj/" + modelName);
 		std::vector<GLushort> vtcIdc = util::mesh::rd::idc("res/obj/" + modelName, 0);
 
-		_noIdc = vtcIdc.size();
+		_noEl = vtcIdc.size();
 
 		std::vector<GLfloat> vtc;
 		for (int i = 0; i < vtcIdc.size(); i++) {
@@ -119,7 +119,7 @@ void Obj::draw() {
 
 	glUniformMatrix4fv(_uniModelOutline, 1, GL_FALSE, glm::value_ptr(_model));
 
-	glDrawArrays(GL_TRIANGLES, 0, _noIdc);
+	glDrawArrays(GL_TRIANGLES, 0, _noEl);
 
 	_progOutline.unUse();
 
@@ -129,7 +129,7 @@ void Obj::draw() {
 
 	glUniformMatrix4fv(_uniModel, 1, GL_FALSE, glm::value_ptr(_model));
 
-	glDrawArrays(GL_TRIANGLES, 0, _noIdc);
+	glDrawArrays(GL_TRIANGLES, 0, _noEl);
 
 	_prog.unUse();
 }

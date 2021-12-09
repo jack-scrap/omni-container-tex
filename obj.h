@@ -11,7 +11,7 @@
 
 class Obj {
 	private:
-		unsigned int _noIdc;
+		unsigned int _noEl;
 
 		GLuint _vao;
 		GLuint _vbo;
