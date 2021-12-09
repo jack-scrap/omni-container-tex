@@ -20,6 +20,8 @@ class Obj {
 
 		GLuint _ibo;
 
+		GLuint _tex;
+
 		Prog _prog;
 		Prog _progOutline;
 
@@ -35,8 +37,6 @@ class Obj {
 		GLint _uniProjOutline;
 
 		GLuint _uniTex;
-
-		GLuint _tex;
 
 	public:
 		glm::mat4 _model;
