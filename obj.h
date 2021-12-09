@@ -14,6 +14,7 @@ class Obj {
 		unsigned int _noEl;
 
 		GLuint _vao;
+
 		GLuint _vbo;
 
 		GLuint _ibo;
