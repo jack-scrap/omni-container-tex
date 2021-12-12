@@ -1,6 +1,6 @@
 #version 400
 
-float stroke = 0.16;
+const float stroke = 0.16;
 
 in vec3 pos;
 
