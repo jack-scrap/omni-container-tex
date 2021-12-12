@@ -1,7 +1,7 @@
 #version 400
 
-vec3 beige = vec3(235 / 255.0, 226 / 255.0, 202 / 255.0);
+vec3 beige = vec3(235, 226, 202);
 
 void main() {
-	gl_FragColor = vec4(beige, 1.0);
+	gl_FragColor = vec4(beige / vec3(225.0), 1.0);
 }
