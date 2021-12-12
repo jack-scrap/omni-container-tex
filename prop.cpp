@@ -147,11 +147,13 @@ void Prop::draw() {
 
 	_prog.unUse();
 
-	_progWire.use();
+	if (_showWire) {
+		_progWire.use();
 
-	glUniformMatrix4fv(_uniModelWire, 1, GL_FALSE, glm::value_ptr(_model));
+		glUniformMatrix4fv(_uniModelWire, 1, GL_FALSE, glm::value_ptr(_model));
 
-	glDrawArrays(GL_LINES, 0, _noEl);
+		glDrawArrays(GL_LINES, 0, _noEl);
 
-	_progWire.unUse();
+		_progWire.unUse();
+	}
 }

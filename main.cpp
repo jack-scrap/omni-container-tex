@@ -36,6 +36,10 @@ int main() {
 				SDL_Quit();
 			}
 
+			if (e.type == SDL_KEYDOWN) {
+				prop._showWire = !prop._showWire;
+			}
+
 			if (e.type == SDL_MOUSEWHEEL) {
 				if (e.wheel.y > 0) {
 					if (glm::all(glm::lessThan(scale, glm::vec3(0.01, 0.01, 0.01)))) {

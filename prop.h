@@ -48,6 +48,8 @@ class Prop {
 		glm::mat4 _view;
 		glm::mat4 _proj;
 
+		bool _showWire = false;
+
 		Prop(std::string modelName, std::string texName);
 
 		void draw();
