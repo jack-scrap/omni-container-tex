@@ -33,7 +33,9 @@ int main() {
 	while (disp.open) {
 		while (SDL_PollEvent(&e)) {
 			if (e.type == SDL_KEYDOWN) {
-				prop._showWire = !prop._showWire;
+				if (e.key.keysym.sym == SDLK_F1) {
+					prop._showWire = !prop._showWire;
+				}
 			}
 
 			if (e.type == SDL_MOUSEWHEEL) {
