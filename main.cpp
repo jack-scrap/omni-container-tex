@@ -32,10 +32,6 @@ int main() {
 
 	while (disp.open) {
 		while (SDL_PollEvent(&e)) {
-			if (e.type == SDL_QUIT) {
-				SDL_Quit();
-			}
-
 			if (e.type == SDL_KEYDOWN) {
 				prop._showWire = !prop._showWire;
 			}
@@ -74,6 +70,10 @@ int main() {
 					prop._model = glm::rotate(prop._model, (GLfloat) (r * (M_PI / 100.0)), glm::vec3(0, 1, 0));
 					prop._model = glm::scale(prop._model, scale);
 				}
+			}
+
+			if (e.type == SDL_QUIT) {
+				SDL_Quit();
 			}
 		}
 
