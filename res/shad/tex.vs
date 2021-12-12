@@ -3,10 +3,9 @@
 in vec3 pos;
 in vec2 st;
 
-uniform mat4
-	model,
-	view,
-	proj;
+uniform mat4 model;
+uniform mat4 view;
+uniform mat4 proj;
 
 out vec3 _pos;
 out vec2 _st;
