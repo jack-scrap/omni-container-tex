@@ -7,10 +7,8 @@ OBJ_STATIC=$(patsubst %, $(BUILDDIR)/%.o, $(STATIC))
 
 HDR=col.h
 
-GL=-lGLEW -lGL
-SDL=-lSDL2
-LDFLAGS+=$(SDL)
-LDFLAGS+=$(GL)
+LDFLAGS+=-lGLEW -lGL
+LDFLAGS+=-lSDL2
 
 .PHONY: clean
 
