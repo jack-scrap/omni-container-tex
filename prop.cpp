@@ -7,7 +7,8 @@
 
 Prop::Prop(std::string modelName, std::string texName) :
 	_prog("res/shad/tex", "res/shad/tex"),
-	_progOutline("res/shad/outline", "res/shad/outline") {
+	_progOutline("res/shad/outline", "res/shad/outline"),
+	_progWire("res/shad/base", "res/shad/solid") {
 		glGenVertexArrays(1, &_vao);
 		glBindVertexArray(_vao);
 
@@ -106,6 +107,23 @@ Prop::Prop(std::string modelName, std::string texName) :
 		glUniformMatrix4fv(_uniModelOutline, 1, GL_FALSE, glm::value_ptr(_model));
 
 		_progOutline.unUse();
+
+		_progWire.use();
+
+		glBindBuffer(GL_ARRAY_BUFFER, _vbo);
+		GLint attrPosWire = glGetAttribLocation(_prog._id, "pos");
+		glVertexAttribPointer(attrPosWire, VTX_SZ, GL_FLOAT, GL_FALSE, 0, (GLvoid*) 0);
+		glEnableVertexAttribArray(attrPosWire);
+
+		_uniModelWire = glGetUniformLocation(_progWire._id, "model");
+		_uniViewWire = glGetUniformLocation(_progWire._id, "view");
+		_uniProjWire = glGetUniformLocation(_progWire._id, "proj");
+
+		glUniformMatrix4fv(_uniProjWire, 1, GL_FALSE, glm::value_ptr(_proj));
+		glUniformMatrix4fv(_uniViewWire, 1, GL_FALSE, glm::value_ptr(_view));
+		glUniformMatrix4fv(_uniModelWire, 1, GL_FALSE, glm::value_ptr(_model));
+
+		_progWire.unUse();
 	}
 
 void Prop::draw() {
@@ -128,4 +146,12 @@ void Prop::draw() {
 	glDrawArrays(GL_TRIANGLES, 0, _noEl);
 
 	_prog.unUse();
+
+	_progWire.use();
+
+	glUniformMatrix4fv(_uniModelWire, 1, GL_FALSE, glm::value_ptr(_model));
+
+	glDrawArrays(GL_LINES, 0, _noEl);
+
+	_progWire.unUse();
 }
