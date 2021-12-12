@@ -19,12 +19,17 @@ int main() {
 
 	Prop prop("c_bonk", "c_energydrink_blu");
 
-	glm::vec3 scale = glm::vec3(0.02, 0.02, 0.02);
+	glm::vec3 scale = glm::vec3(0.001, 0.001, 0.001);
 
 	bool pan = false;
 
 	SDL_Event e;
 	unsigned int r = 0;
+
+	prop._model = glm::mat4(1.0);
+	prop._model = glm::rotate(prop._model, (GLfloat) r, glm::vec3(0, 1, 0));
+	prop._model = glm::scale(prop._model, scale);
+
 	while (disp.open) {
 		while (SDL_PollEvent(&e)) {
 			if (e.type == SDL_QUIT) {
@@ -33,16 +38,20 @@ int main() {
 
 			if (e.type == SDL_MOUSEWHEEL) {
 				if (e.wheel.y > 0) {
-					if (glm::all(glm::lessThan(scale, glm::vec3(0.05, 0.05, 0.05)))) {
-						scale += glm::vec3(0.01, 0.01, 0.01);
+					if (glm::all(glm::lessThan(scale, glm::vec3(0.01, 0.01, 0.01)))) {
+						scale += glm::vec3(0.001, 0.001, 0.001);
 					}
 				}
 
 				if (e.wheel.y < 0) {
 					if (glm::all(glm::greaterThan(scale, glm::vec3(0.01, 0.01, 0.01)))) {
-						scale -= glm::vec3(0.01, 0.01, 0.01);
+						scale -= glm::vec3(0.001, 0.001, 0.001);
 					}
 				}
+
+				prop._model = glm::mat4(1.0);
+				prop._model = glm::rotate(prop._model, (GLfloat) (r * (M_PI / 100.0)), glm::vec3(0, 1, 0));
+				prop._model = glm::scale(prop._model, scale);
 			}
 
 			if (e.type == SDL_MOUSEBUTTONDOWN) {
@@ -55,11 +64,11 @@ int main() {
 
 			if (e.type == SDL_MOUSEMOTION) {
 				if (pan) {
+					r++;
+
 					prop._model = glm::mat4(1.0);
 					prop._model = glm::rotate(prop._model, (GLfloat) (r * (M_PI / 100.0)), glm::vec3(0, 1, 0));
 					prop._model = glm::scale(prop._model, scale);
-
-					r++;
 				}
 			}
 		}
