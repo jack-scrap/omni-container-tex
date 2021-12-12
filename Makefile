@@ -1,7 +1,9 @@
 CXX=g++
 
+BUILDDIR=build
+
 STATIC=main disp prog util prop
-OBJ_STATIC=$(patsubst %, %.o, $(STATIC))
+OBJ_STATIC=$(patsubst %, $(BUILDDIR)/%.o, $(STATIC))
 
 HDR=col.h
 
@@ -14,14 +16,14 @@ LDFLAGS+=$(GL)
 
 all: make
 
-%.o: %.cpp %.h
+$(BUILDDIR)/%.o: %.cpp %.h
 	$(CXX) -c $< -o $@ $(LDFLAGS)
 
-main.o: main.cpp
+$(BUILDDIR)/main.o: main.cpp
 	$(CXX) -c $< -o $@ $(LDFLAGS)
 
 make: $(OBJ_STATIC) $(HDR)
-	$(CXX) $^ $(LDFLAGS)
+	$(CXX) $(OBJ_STATIC) $(LDFLAGS)
 
 clean:
-	rm *.o a.out
+	rm $(BUILDDIR)/*.o a.out
