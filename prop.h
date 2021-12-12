@@ -23,7 +23,7 @@ class Prop {
 		GLuint _tex;
 
 		Prog _prog;
-		Prog _progOutline;
+		Prog _progBackdrop;
 		Prog _progWire;
 
 		GLint _attrPos;
@@ -33,9 +33,9 @@ class Prop {
 		GLint _uniView;
 		GLint _uniProj;
 
-		GLint _uniModelOutline;
-		GLint _uniViewOutline;
-		GLint _uniProjOutline;
+		GLint _uniModelBackdrop;
+		GLint _uniViewBackdrop;
+		GLint _uniProjBackdrop;
 
 		GLint _uniModelWire;
 		GLint _uniViewWire;

@@ -7,7 +7,7 @@
 
 Prop::Prop(std::string modelName, std::string texName) :
 	_prog("res/shad/tex", "res/shad/tex"),
-	_progOutline("res/shad/outline", "res/shad/outline"),
+	_progBackdrop("res/shad/backdrop", "res/shad/backdrop"),
 	_progWire("res/shad/base", "res/shad/solid") {
 		glGenVertexArrays(1, &_vao);
 		glBindVertexArray(_vao);
@@ -91,22 +91,22 @@ Prop::Prop(std::string modelName, std::string texName) :
 
 		_prog.unUse();
 
-		_progOutline.use();
+		_progBackdrop.use();
 
 		glBindBuffer(GL_ARRAY_BUFFER, _vbo);
-		GLint attrPosOutline = glGetAttribLocation(_prog._id, "pos");
-		glVertexAttribPointer(attrPosOutline, VTX_SZ, GL_FLOAT, GL_FALSE, 0, (GLvoid*) 0);
-		glEnableVertexAttribArray(attrPosOutline);
+		GLint attrPosBackdrop = glGetAttribLocation(_prog._id, "pos");
+		glVertexAttribPointer(attrPosBackdrop, VTX_SZ, GL_FLOAT, GL_FALSE, 0, (GLvoid*) 0);
+		glEnableVertexAttribArray(attrPosBackdrop);
 
-		_uniModelOutline = glGetUniformLocation(_progOutline._id, "model");
-		_uniViewOutline = glGetUniformLocation(_progOutline._id, "view");
-		_uniProjOutline = glGetUniformLocation(_progOutline._id, "proj");
+		_uniModelBackdrop = glGetUniformLocation(_progBackdrop._id, "model");
+		_uniViewBackdrop = glGetUniformLocation(_progBackdrop._id, "view");
+		_uniProjBackdrop = glGetUniformLocation(_progBackdrop._id, "proj");
 
-		glUniformMatrix4fv(_uniProjOutline, 1, GL_FALSE, glm::value_ptr(_proj));
-		glUniformMatrix4fv(_uniViewOutline, 1, GL_FALSE, glm::value_ptr(_view));
-		glUniformMatrix4fv(_uniModelOutline, 1, GL_FALSE, glm::value_ptr(_model));
+		glUniformMatrix4fv(_uniProjBackdrop, 1, GL_FALSE, glm::value_ptr(_proj));
+		glUniformMatrix4fv(_uniViewBackdrop, 1, GL_FALSE, glm::value_ptr(_view));
+		glUniformMatrix4fv(_uniModelBackdrop, 1, GL_FALSE, glm::value_ptr(_model));
 
-		_progOutline.unUse();
+		_progBackdrop.unUse();
 
 		_progWire.use();
 
@@ -129,13 +129,13 @@ Prop::Prop(std::string modelName, std::string texName) :
 void Prop::draw() {
 	glDisable(GL_DEPTH_TEST);
 
-	_progOutline.use();
+	_progBackdrop.use();
 
-	glUniformMatrix4fv(_uniModelOutline, 1, GL_FALSE, glm::value_ptr(_model));
+	glUniformMatrix4fv(_uniModelBackdrop, 1, GL_FALSE, glm::value_ptr(_model));
 
 	glDrawArrays(GL_TRIANGLES, 0, _noEl);
 
-	_progOutline.unUse();
+	_progBackdrop.unUse();
 
 	glEnable(GL_DEPTH_TEST);
 
