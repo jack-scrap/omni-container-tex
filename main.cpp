@@ -79,7 +79,7 @@ int main() {
 			}
 		}
 
-		disp.clear(bg.r / 255.0, bg.g / 255.0, bg.b / 255.0, 1);
+		disp.clear(col[false].r / 255.0, col[false].g / 255.0, col[false].b / 255.0, 1);
 
 		prop.draw();
 

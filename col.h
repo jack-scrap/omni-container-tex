@@ -2,14 +2,8 @@
 
 #include <SDL2/SDL.h>
 
-SDL_Color bg = {
-	42,
-	39,
-	37
+static constexpr glm::vec3 col[2] = {
+	glm::vec3(38, 38, 38),
+	glm::vec3(255, 142, 65)
 };
 
-SDL_Color beige = {
-	235,
-	226,
-	202
-};
