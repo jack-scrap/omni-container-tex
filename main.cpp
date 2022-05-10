@@ -17,7 +17,7 @@
 int main() {
 	Disp disp("asdf", 800, 600);
 
-	Prop prop("c_bonk", "c_energydrink_blu");
+	Prop prop("cont", "c_energydrink_blu");
 
 	glm::vec3 scale = glm::vec3(0.001, 0.001, 0.001);
 
