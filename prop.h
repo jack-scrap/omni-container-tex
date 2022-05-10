@@ -18,8 +18,6 @@ class Prop {
 		GLuint _vbo;
 		GLuint _stbo;
 
-		GLuint _ibo;
-
 		GLuint _tex;
 
 		Prog _prog;
