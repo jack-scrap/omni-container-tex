@@ -13,6 +13,6 @@ out vec2 _st;
 void main() {
 	gl_Position = proj * view * model * vec4(pos, 1.0);
 
-	_pos = pos;
+	_pos = gl_Position.xyz;
 	_st = st * vec2(1, -1);
 }
