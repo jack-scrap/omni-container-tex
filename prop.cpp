@@ -74,6 +74,8 @@ Prop::Prop(std::string modelName, std::string texName) :
 		unsigned char* data = stbi_load(std::string("res/tex/" + texName + ".png").c_str(), &wd, &ht, &chan, 3);
 		if (!data) {
 			std::cout << "Error: Couldn't load" << std::endl;
+
+			std::cout << stbi_failure_reason() << std::endl;
 		}
 
 		glTexImage2D(GL_TEXTURE_2D, 0, GL_RGB, wd, ht, 0, GL_RGB, GL_UNSIGNED_BYTE, data);
