@@ -42,6 +42,16 @@ Prop::Prop(std::string modelName, std::string texName) :
 		}
 		glBufferData(GL_ARRAY_BUFFER, st.size() * sizeof (GLfloat), &st[0], GL_STATIC_DRAW);
 
+		GLuint ibo;
+		glGenBuffers(1, &ibo);
+		glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, ibo);
+
+		std::vector<GLushort> idc;
+		for (int i = 0; i < vtc.size() / 3; i++) {
+			idc.push_back(i);
+		}
+		glBufferData(GL_ELEMENT_ARRAY_BUFFER, idc.size() * sizeof (GLushort), &idc[0], GL_STATIC_DRAW);
+
 		_model = glm::mat4(1.0);
 		_view = glm::lookAt(glm::vec3(3.0, 3.0, 3.0), glm::vec3(0.0, 0.0, 0.0), glm::vec3(0, 1, 0));
 		_proj = glm::perspective(glm::radians(45.0), 800.0 / 600.0, 0.1, 100.0);
@@ -143,7 +153,7 @@ void Prop::draw() {
 
 	glUniformMatrix4fv(_uniModel, 1, GL_FALSE, glm::value_ptr(_model));
 
-	glDrawArrays(GL_TRIANGLES, 0, _noEl);
+	glDrawElements(GL_TRIANGLES, _noEl, GL_UNSIGNED_SHORT, (GLvoid*) 0);
 
 	_prog.unUse();
 
