@@ -1,10 +1,13 @@
 #include <glm/gtc/type_ptr.hpp>
 #include <iostream>
 #include <glm/gtc/matrix_transform.hpp>
+#include <SDL2/SDL.h>
 
 #include "prop.h"
 #include "math.h"
-#include "stb_image.h"
+#include "disp.h"
+
+extern Disp disp;
 
 Prop::Prop(std::string modelName, std::string texName) :
 	_prog("res/shad/tex", "res/shad/tex"),
@@ -82,16 +85,15 @@ Prop::Prop(std::string modelName, std::string texName) :
 		glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_NEAREST);
 		glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_NEAREST);
 
-		int sz[2];
-		int chan;
-		GLubyte* data = stbi_load(std::string("res/tex/" + texName + ".bmp").c_str(), &sz[X], &sz[Y], &chan, 3);
-		if (!data) {
-			std::cout << "Error: Couldn't load" << std::endl;
+		std::string texPath = std::string("res/tex/" + texName + ".bmp");
 
-			std::cout << stbi_failure_reason() << std::endl;
+		SDL_Surface* surf = SDL_LoadBMP(texPath.c_str());
+
+		if (!surf) {
+			std::cout << "Error: Couldn't load texture" << std::endl;
 		}
 
-		glTexImage2D(GL_TEXTURE_2D, 0, GL_RGB, sz[X], sz[Y], 0, GL_RGB, GL_UNSIGNED_BYTE, data);
+		glTexImage2D(GL_TEXTURE_2D, 0, GL_RGB, surf->w, surf->h, 0, GL_RGB, GL_UNSIGNED_BYTE, surf->pixels);
 
 		glGenerateMipmap(GL_TEXTURE_2D);
 

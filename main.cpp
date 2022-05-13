@@ -14,9 +14,9 @@
 #include "prop.h"
 #include "col.h"
 
-int main() {
-	Disp disp("asdf", 800, 600);
+extern Disp disp("asdf", 800, 600);
 
+int main() {
 	Prop prop("cont", "0");
 
 	glm::vec3 scale = glm::vec3(0.001, 0.001, 0.001);

@@ -11,7 +11,7 @@ Disp::Disp(const char* title, int wd, int ht) {
 	SDL_GL_SetAttribute(SDL_GL_BUFFER_SIZE, 32);
 	SDL_GL_SetAttribute(SDL_GL_DOUBLEBUFFER, 1);
 
-	win = SDL_CreateWindow(title, SDL_WINDOWPOS_CENTERED, SDL_WINDOWPOS_CENTERED, wd, ht, SDL_WINDOW_OPENGL);
+	SDL_CreateWindowAndRenderer(wd, ht, 0, &win, &rend);
 
 	ctx = SDL_GL_CreateContext(win);
 
