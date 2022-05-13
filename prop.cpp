@@ -84,7 +84,7 @@ Prop::Prop(std::string modelName, std::string texName) :
 		int wd;
 		int ht;
 		int chan;
-		unsigned char* data = stbi_load(std::string("res/tex/" + texName + ".bmp").c_str(), &wd, &ht, &chan, 3);
+		GLubyte* data = stbi_load(std::string("res/tex/" + texName + ".bmp").c_str(), &wd, &ht, &chan, 3);
 		if (!data) {
 			std::cout << "Error: Couldn't load" << std::endl;
 
