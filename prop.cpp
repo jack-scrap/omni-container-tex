@@ -93,7 +93,7 @@ Prop::Prop(std::string modelName, std::string texName) :
 			std::cout << "Error: Couldn't load texture" << std::endl;
 		}
 
-		glTexImage2D(GL_TEXTURE_2D, 0, GL_RGB, surf->w, surf->h, 0, GL_RGB, GL_UNSIGNED_BYTE, surf->pixels);
+		glTexImage2D(GL_TEXTURE_2D, 0, GL_RGB, surf->w, surf->h, 0, GL_BGR, GL_UNSIGNED_BYTE, surf->pixels);
 
 		glGenerateMipmap(GL_TEXTURE_2D);
 
