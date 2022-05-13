@@ -3,6 +3,7 @@
 #include <glm/gtc/matrix_transform.hpp>
 
 #include "prop.h"
+#include "math.h"
 #include "stb_image.h"
 
 Prop::Prop(std::string modelName, std::string texName) :
@@ -81,17 +82,16 @@ Prop::Prop(std::string modelName, std::string texName) :
 		glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_NEAREST);
 		glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_NEAREST);
 
-		int wd;
-		int ht;
+		int sz[2];
 		int chan;
-		GLubyte* data = stbi_load(std::string("res/tex/" + texName + ".bmp").c_str(), &wd, &ht, &chan, 3);
+		GLubyte* data = stbi_load(std::string("res/tex/" + texName + ".bmp").c_str(), &sz[X], &sz[Y], &chan, 3);
 		if (!data) {
 			std::cout << "Error: Couldn't load" << std::endl;
 
 			std::cout << stbi_failure_reason() << std::endl;
 		}
 
-		glTexImage2D(GL_TEXTURE_2D, 0, GL_RGB, wd, ht, 0, GL_RGB, GL_UNSIGNED_BYTE, data);
+		glTexImage2D(GL_TEXTURE_2D, 0, GL_RGB, sz[X], sz[Y], 0, GL_RGB, GL_UNSIGNED_BYTE, data);
 
 		glGenerateMipmap(GL_TEXTURE_2D);
 

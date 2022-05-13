@@ -5,7 +5,7 @@ BUILDDIR=build
 STATIC=main disp prog util prop
 OBJ_STATIC=$(patsubst %, $(BUILDDIR)/%.o, $(STATIC))
 
-HDR=col.h
+HDR=math.h col.h
 
 LDFLAGS+=-lGLEW -lGL
 LDFLAGS+=-lSDL2
