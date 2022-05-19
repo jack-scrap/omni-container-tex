@@ -57,8 +57,9 @@ Prop::Prop(std::string modelName, std::string texName) :
 		glBufferData(GL_ELEMENT_ARRAY_BUFFER, idc.size() * sizeof (GLushort), &idc[0], GL_STATIC_DRAW);
 
 		_model = glm::mat4(1.0);
-		_view = glm::lookAt(glm::vec3(3.0, 3.0, 3.0), glm::vec3(0.0, 0.0, 0.0), glm::vec3(0, 1, 0));
-		_proj = glm::perspective(glm::radians(45.0), 800.0 / 600.0, 0.1, 100.0);
+		_view = glm::lookAt(glm::vec3(1000.0, 1000.0, 1000.0), glm::vec3(0.0, 0.0, 0.0), glm::vec3(0, 1, 0));
+		_view = glm::scale(_view, glm::vec3(100.0, 100.0, 100.0));
+		_proj = glm::ortho(-(800.0 / 2.0), 800.0 / 2.0, -(600.0 / 2.0), 600.0 / 2.0, 0.1, 100000.0);
 
 		_prog.use();
 
