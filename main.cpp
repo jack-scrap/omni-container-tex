@@ -16,7 +16,7 @@
 extern Disp disp("asdf", 800, 600);
 
 int main() {
-	Prop prop("cont", "0");
+	Prop prop("container_2x4", "0");
 
 	glm::vec3 scale = glm::vec3(1.0, 1.0, 1.0);
 
